@@ -1,0 +1,8 @@
+# test file for nagios-plugin-hipsaint
+---
+- hosts: localhost
+  remote_user: root
+  pre_tasks:
+    - include: pre.yml
+  roles:
+    - ../../

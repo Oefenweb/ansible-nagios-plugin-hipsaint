@@ -1,0 +1,3 @@
+# defaults file for nagios-plugin-hipsaint
+---
+nagios_plugin_hipsaint_version: latest
