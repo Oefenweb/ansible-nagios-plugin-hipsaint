@@ -1,0 +1,74 @@
+---
+language: python
+python: "2.7"
+
+env:
+  - ANSIBLE_VERSION=latest
+  - ANSIBLE_VERSION=1.9.4
+  - ANSIBLE_VERSION=1.9.3
+  - ANSIBLE_VERSION=1.9.2
+  - ANSIBLE_VERSION=1.9.1
+  - ANSIBLE_VERSION=1.9.0.1
+  - ANSIBLE_VERSION=1.8.4
+  - ANSIBLE_VERSION=1.8.3
+  - ANSIBLE_VERSION=1.8.2
+  - ANSIBLE_VERSION=1.8.1
+  - ANSIBLE_VERSION=1.8
+  - ANSIBLE_VERSION=1.7.2
+  - ANSIBLE_VERSION=1.7.1
+  - ANSIBLE_VERSION=1.7
+  - ANSIBLE_VERSION=1.6.9
+  - ANSIBLE_VERSION=1.6.8
+  - ANSIBLE_VERSION=1.6.7
+  - ANSIBLE_VERSION=1.6.6
+  - ANSIBLE_VERSION=1.6.5
+  - ANSIBLE_VERSION=1.6.4
+  - ANSIBLE_VERSION=1.6.3
+  - ANSIBLE_VERSION=1.6.2
+  - ANSIBLE_VERSION=1.6.10
+  - ANSIBLE_VERSION=1.6.1
+  - ANSIBLE_VERSION=1.6
+  - ANSIBLE_VERSION=1.5.5
+  - ANSIBLE_VERSION=1.5.4
+  - ANSIBLE_VERSION=1.5.3
+  - ANSIBLE_VERSION=1.5.2
+  - ANSIBLE_VERSION=1.5.1
+  - ANSIBLE_VERSION=1.5
+  - ANSIBLE_VERSION=1.4.5
+  - ANSIBLE_VERSION=1.4.4
+
+branches:
+  only:
+    - master
+
+matrix:
+  allow_failures:
+    # See https://github.com/ansible/ansible/issues/6385
+    - env: ANSIBLE_VERSION=1.5.1
+
+before_install:
+  - sudo apt-get update -qq
+
+install:
+  # Install Ansible.
+  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
+
+script:
+  # Check the role/playbook's syntax.
+  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
+
+  # Run the role/playbook with ansible-playbook.
+  - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo -vvvv
+
+  # Run the role/playbook again, checking to make sure it's idempotent.
+  - >
+    ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
+
+notifications:
+  email: false
+  hipchat:
+    rooms:
+      secure: bu+oRnRseVb//0IlXqdSOc/zxL8amhI5pgkKOyci4fMx7+IZe6DXKhXWpU4IHdIoNs1JiXzvP2VlQRATKgB8U5zoqlRS1fnlLUsgzq0nV2xO8B3qw55DtjnfxPH8yo3u1vLJQ5OoI6WqqmPoD31dgsaksVWA5Z29fZoIsu26QdhZevDNKtWCDPSDI9avGJ5RwJ+ChHAMUCxG1Lol7MqoLL0yG9mPmoRukavjYwFqyM5TdLz4gykCM2p5C5DzhX5g2s5JcF1+MRKi0KGdzxQZtx6Gr8kzUs4unykqMPBHXA6QMqzi4t7pSDjOmu+pDzi+sgjnFYLHJF7+3mywztCHfZsv+fzH0fhoBXQAVK1V1y2pkoVnvTgQECIbSf1UDHfFU36+DnM033w3Tg+FHuZJ+TKFORsEgS9H85R2jT5Shn655KpqItjyD4FbKHkVmgIk9aBBRThWAZU7p5OmKZSiuDqeHYzMPQFq5M302GbhqhvNmVKcj/NF8Q+7pCwry70/fCg6EjawVwzjN6RpySiJ1mHAptyZlxA5rocYIqA7/JZWMRMIViaYHmMLiSxEfe0gUMRgKLjVTuhw9kAZCFAyjnsJwm0KizsVZ5xpdFLapHhpSen1J8jxWbvZFqzqHDyJoqBHGxGbu2U759ZoJek+JKiLa55In0s8Z8s4V2Nh8Zw=

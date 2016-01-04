@@ -1,0 +1,36 @@
+# tasks file for nagios-plugin-hipsaint
+---
+- name: install dependencies
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: true
+    cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
+  with_items: nagios_plugin_hipsaint_dependencies
+  tags:
+    - configuration
+    - nagios-plugin-hipsaint
+    - nagios-plugin-hipsaint-install
+    - nagios-plugin-hipsaint-install-dependencies
+
+- name: install hipsaint (specific version)
+  pip:
+    name: hipsaint
+    version: "{{ nagios_plugin_hipsaint_version }}"
+  when: "nagios_plugin_hipsaint_version != 'latest'"
+  tags:
+    - configuration
+    - nagios-plugin-hipsaint
+    - nagios-plugin-hipsaint-install
+    - nagios-plugin-hipsaint-install-specific
+
+- name: install hipsaint (latest version)
+  pip:
+    name: hipsaint
+    state: "{{ nagios_plugin_hipsaint_version }}"
+  when: "nagios_plugin_hipsaint_version == 'latest'"
+  tags:
+    - configuration
+    - nagios-plugin-hipsaint
+    - nagios-plugin-hipsaint-install
+    - nagios-plugin-hipsaint-install-latest
