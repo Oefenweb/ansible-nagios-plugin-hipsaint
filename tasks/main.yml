@@ -2,11 +2,12 @@
 ---
 - name: install dependencies
   apt:
+  apt:
     name: "{{ item }}"
-    state: latest
+    state: "{{ apt_install_state | default('latest') }}"
     update_cache: true
     cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
-  with_items: nagios_plugin_hipsaint_dependencies
+  with_items: "{{ nagios_plugin_hipsaint_dependencies }}"
   tags:
     - configuration
     - nagios-plugin-hipsaint
