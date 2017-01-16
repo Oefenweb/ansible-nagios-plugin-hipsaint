@@ -2,7 +2,6 @@
 ---
 - name: install dependencies
   apt:
-  apt:
     name: "{{ item }}"
     state: "{{ apt_install_state | default('latest') }}"
     update_cache: true
