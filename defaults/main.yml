@@ -1,3 +1,5 @@
 # defaults file for nagios-plugin-hipsaint
 ---
+nagios_plugin_hipsaint_python_version: 2
+
 nagios_plugin_hipsaint_version: latest

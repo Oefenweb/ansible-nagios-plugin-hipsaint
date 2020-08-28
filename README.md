@@ -1,6 +1,7 @@
 ## nagios-plugin-hipsaint
 
-[![Build Status](https://travis-ci.org/Oefenweb/ansible-nagios-plugin-hipsaint.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-nagios-plugin-hipsaint) [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-nagios--plugin--hipsaint-blue.svg)](https://galaxy.ansible.com/Oefenweb/nagios-plugin-hipsaint)
+[![Build Status](https://travis-ci.org/Oefenweb/ansible-nagios-plugin-hipsaint.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-nagios-plugin-hipsaint)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-nagios--plugin--hipsaint-blue.svg)](https://galaxy.ansible.com/Oefenweb/nagios-plugin-hipsaint)
 
 Set up (the latest, or a specific version of) [HipSaint](https://github.com/hannseman/hipsaint) in Debian-like systems.
 
@@ -8,9 +9,11 @@ Set up (the latest, or a specific version of) [HipSaint](https://github.com/hann
 
 * `pip` (will not installed)
 
-* `python` (will be installed)
+* `python(2|3)` (will be installed)
 
 #### Variables
+
+* `nagios_plugin_hipsaint_python_version` [default: `2`]: Python version to install `hipsaint` for.
 
 * `nagios_plugin_hipsaint_version`: [default: `latest`]: HipSaint version to install (e.g. `latest`, `0.5.2`)
 
