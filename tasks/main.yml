@@ -16,7 +16,7 @@
   pip:
     name: hipsaint
     version: "{{ nagios_plugin_hipsaint_version }}"
-    executable: "pip{{ nagios_plugin_hipsaint_python_version | string }}"
+    executable: "{{ nagios_plugin_hipsaint_pip_executable }}"
   when: "nagios_plugin_hipsaint_version != 'latest'"
   tags:
     - configuration
@@ -28,7 +28,7 @@
   pip:
     name: hipsaint
     state: "{{ nagios_plugin_hipsaint_version }}"
-    executable: "pip{{ nagios_plugin_hipsaint_python_version | string }}"
+    executable: "{{ nagios_plugin_hipsaint_pip_executable }}"
   when: "nagios_plugin_hipsaint_version == 'latest'"
   tags:
     - configuration
