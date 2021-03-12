@@ -2,7 +2,7 @@
 ---
 galaxy_info:
   namespace: oefenweb
-  role_name: nagios-plugin-hipsaint
+  role_name: nagios_plugin_hipsaint
   author: Mischa ter Smitten
   company: Oefenweb.nl B.V.
   description: Set up (the latest, or a specific version of) HipSaint in Debian-like systems
