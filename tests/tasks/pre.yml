@@ -3,7 +3,7 @@
 - name: install dependencies
   apt:
     name:
-      - "python{{ ansible_python_version_major is version('3', '>=') | ternary('3', '') }}"
+      - "python{{ nagios_plugin_hipsaint_python_version_major is version('3', '>=') | ternary('3', '') }}"
       - curl
     state: "{{ apt_install_state | default('latest') }}"
     update_cache: true
@@ -11,7 +11,7 @@
 
 - name: install pip
   shell: >
-    curl -sL {{ ansible_get_pip_url }} | python{{ ansible_python_version_major | string }} -
+    curl -sL {{ nagios_plugin_hipsaint_get_pip_url }} | python{{ nagios_plugin_hipsaint_python_version_major | string }} -
   args:
     warn: false
   changed_when: false

@@ -1,4 +1,4 @@
 # vars file for nagios-plugin-hipsaint
 ---
-ansible_python_version_major: 2
-ansible_get_pip_url: 'https://bootstrap.pypa.io/pip/2.7/get-pip.py'
+nagios_plugin_hipsaint_python_version_major: 2
+nagios_plugin_hipsaint_get_pip_url: 'https://bootstrap.pypa.io/pip/2.7/get-pip.py'
