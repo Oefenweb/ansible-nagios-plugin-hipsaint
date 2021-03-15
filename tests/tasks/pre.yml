@@ -1,4 +1,4 @@
-# pre test file for nagios-plugin-hipsaint
+# pre test file
 ---
 - name: install dependencies
   apt:

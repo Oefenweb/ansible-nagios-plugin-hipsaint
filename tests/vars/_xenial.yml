@@ -1,4 +1,4 @@
-# vars file for nagios-plugin-hipsaint
+# vars file
 ---
 nagios_plugin_hipsaint_python_version_major: 3
 nagios_plugin_hipsaint_get_pip_url: 'https://bootstrap.pypa.io/pip/3.5/get-pip.py'

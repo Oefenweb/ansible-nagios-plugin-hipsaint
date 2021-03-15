@@ -1,4 +1,4 @@
-# vars file for nagios-plugin-hipsaint
+# vars file
 ---
 nagios_plugin_hipsaint_dependencies:
   - "python{{ nagios_plugin_hipsaint_python_version_major is version('3', '>=') | ternary('3', '') }}"

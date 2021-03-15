@@ -1,4 +1,4 @@
-# tasks file for nagios-plugin-hipsaint
+# tasks file
 ---
 - name: install dependencies
   apt:
