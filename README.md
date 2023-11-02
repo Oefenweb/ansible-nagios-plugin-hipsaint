@@ -33,7 +33,7 @@ None
 ---
 - hosts: all
   roles:
-    - nagios-plugin-hipsaint
+    - oefenweb.nagios-plugin-hipsaint
 ```
 
 #### License
