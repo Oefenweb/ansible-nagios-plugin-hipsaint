@@ -7,7 +7,7 @@ Set up (the latest, or a specific version of) [HipSaint](https://github.com/hann
 
 #### Requirements
 
-* `pip` (will not installed)
+* `pip` (will not be installed)
 
 * `python(2|3)` (will be installed)
 

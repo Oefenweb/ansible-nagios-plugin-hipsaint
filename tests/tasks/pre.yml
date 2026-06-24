@@ -12,6 +12,8 @@
 - name: install pip  # noqa command-instead-of-module
   ansible.builtin.shell: >
     curl -sL {{ nagios_plugin_hipsaint_get_pip_url }} | python{{ nagios_plugin_hipsaint_python_version_major | string }} -
+  when: (ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_version'] is version('24.04', '<')) or
+        (ansible_facts['distribution'] == 'Debian')
   changed_when: false
   tags:
     - skip_ansible_lint
